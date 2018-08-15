@@ -20,7 +20,7 @@ TODO
 
 # 3. Installation, example
 
-The installation process is quite a mess now. Look at the note in the orb_slam2_lib/Vocabulary folder. Then try to run the **build_catkin.sh** script after cleaning whole workspace and everything should be good.
+The installation process is quite a mess now. Look at the note in the **orb_slam2_lib/Vocabulary** folder. Then try to run the **build_catkin.sh** script after cleaning whole workspace and everything should be good.
 
     cd ${YOUR_CATKIN_WORKSPACE_LOCATION}
     catkin clean
