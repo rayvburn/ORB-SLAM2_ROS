@@ -1,0 +1,8 @@
+<launch>
+    <node pkg="orb_slam2" type="Stereo" name="orb_slam2" args="$(find orb_slam2_lib)/Vocabulary/ORBvoc.txt $(find orb_slam2)/settings/eyetoy_stereo.yaml True" cwd="node" output="screen">
+        <remap from="/camera/left/image_raw" to="/stereo/eyetoy_left/image_raw" />
+        <remap from="/camera/right/image_raw" to="/stereo/eyetoy_right/image_raw" />
+        <!--remap from="/camera/left/image_raw" to="/stereo/left/image_color" /-->
+        <!--remap from="/camera/right/image_raw" to="/stereo/right/image_color" /-->
+    </node>
+</launch>

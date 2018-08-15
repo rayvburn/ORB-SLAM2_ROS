@@ -1,0 +1,6 @@
+<launch>
+    <node pkg="orb_slam2" type="Mono" name="orb_slam2" args="$(find orb_slam2_lib)/Vocabulary/ORBvoc.txt $(find orb_slam2)/settings/morse_mono.yaml" cwd="node" output="screen">
+        <remap from="/camera/image_raw" to="/robot/videocamera/image" />
+    </node>
+</launch>
+

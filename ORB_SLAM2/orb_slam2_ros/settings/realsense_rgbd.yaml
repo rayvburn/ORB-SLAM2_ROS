@@ -1,0 +1,62 @@
+%YAML:1.0
+
+#--------------------------------------------------------------------------------------------
+# Camera Parameters. Adjust them!
+#--------------------------------------------------------------------------------------------
+
+# Camera calibration and distortion parameters (OpenCV)
+
+# see https://www.vision.caltech.edu/bouguetj/calib_doc/htmls/parameters.html
+
+# not sure where these values come from, but they work best # commented out: from K matrix
+Camera.fx: 632.7927856445312 # 628.6536254882812
+Camera.fy: 626.8605346679688 # 634.7981567382812
+Camera.cx: 320.0 # 318.6252746582031
+Camera.cy: 240.0 # 228.61512756347656
+
+# zero distortion works best # commented out: from D matrix
+Camera.k1: 0.0 # -0.08089375495910645
+Camera.k2: 0.0 # 0.05040857940912247
+Camera.p1: 0.0 # 0.0005401930538937449
+Camera.p2: 0.0 # 0.0023208833299577236
+Camera.k3: 0.0
+
+Camera.width: 640
+Camera.height: 480
+
+# fx * 0.0589333333 (distance IR cam <-> RGB cam in meters)
+Camera.bf: 37.292588146
+
+# Camera frames per second
+Camera.fps: 30.0
+
+# Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale)
+Camera.RGB: 1
+
+# Close/Far threshold. Baseline times.
+# threshold from which distance on two or more keyframes are needed to really add a map point
+# smaller: less error, larger: more map points, thus more stable tracking
+ThDepth: 10.0
+
+DepthMapFactor: 1.0
+
+
+#--------------------------------------------------------------------------------------------
+# ORB Parameters
+#--------------------------------------------------------------------------------------------
+
+# ORB Extractor: Number of features per image
+ORBextractor.nFeatures: 1000
+
+# ORB Extractor: Scale factor between levels in the scale pyramid
+ORBextractor.scaleFactor: 1.2
+
+# ORB Extractor: Number of levels in the scale pyramid
+ORBextractor.nLevels: 8
+
+# ORB Extractor: Fast threshold
+# Image is divided in a grid. At each cell FAST are extracted imposing a minimum response.
+# Firstly we impose iniThFAST. If no corners are detected we impose a lower value minThFAST
+# You can lower these values if your images have low contrast
+ORBextractor.iniThFAST: 20
+ORBextractor.minThFAST: 7

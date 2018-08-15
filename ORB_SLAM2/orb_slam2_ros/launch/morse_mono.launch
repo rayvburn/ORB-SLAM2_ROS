@@ -1,0 +1,6 @@
+<launch>
+    <node pkg="orb_slam2_ros" type="Mono" name="orb_slam2_ros" args="$(find orb_slam2_ros)/settings/ORBvoc.txt $(find orb_slam2_ros)/settings/morse_mono.yaml" cwd="node" output="screen">
+        <remap from="/camera/image_raw" to="/raspicam_node/image/compressed" />
+    </node>
+</launch>
+

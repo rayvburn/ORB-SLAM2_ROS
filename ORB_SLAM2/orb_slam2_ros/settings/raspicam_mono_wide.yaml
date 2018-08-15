@@ -1,0 +1,65 @@
+%YAML:1.0
+
+#--------------------------------------------------------------------------------------------
+# Camera Parameters. Adjust them!
+#--------------------------------------------------------------------------------------------
+
+# Camera calibration and distortion parameters (OpenCV) 
+
+# see https://www.vision.caltech.edu/bouguetj/calib_doc/htmls/parameters.html
+
+Camera.fx: 413.446894      # focal length x
+Camera.fy: 413.361056      # focal length y
+Camera.cx: 397.966617      # image central point x
+Camera.cy: 284.183695      # image central point y
+
+Camera.k1: -0.269123       # radial distortion component
+Camera.k2: 0.049188        # radial distortion component
+Camera.p1: 0.000644        # tangential distortion component
+Camera.p2: 0.000062        # tangential distortion component
+Camera.k3: 0.000000        # radial distortion component
+
+Camera.width: 800
+Camera.height: 600
+
+# Camera frames per second 
+# Camera.fps: 25.0
+Camera.fps: 12.0
+
+# Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale)
+Camera.RGB: 1
+
+#--------------------------------------------------------------------------------------------
+# ORB Parameters
+#--------------------------------------------------------------------------------------------
+
+# ORB Extractor: Number of features per image
+ORBextractor.nFeatures: 2800 # poor light 2800 # ok light 1600 # def 2000, set higher if it's hard to initialize
+
+# ORB Extractor: Scale factor between levels in the scale pyramid 	
+ORBextractor.scaleFactor: 1.2
+
+# ORB Extractor: Number of levels in the scale pyramid	
+ORBextractor.nLevels: 8 # 8
+
+# ORB Extractor: Fast threshold
+# Image is divided in a grid. At each cell FAST are extracted imposing a minimum response.
+# Firstly we impose iniThFAST. If no corners are detected we impose a lower value minThFAST
+# You can lower these values if your images have low contrast			
+ORBextractor.iniThFAST: 10  # poor light 5  # ok light 13   # def 20
+ORBextractor.minThFAST: 2   # poor light 0  # ok light 4    # def 7
+
+#--------------------------------------------------------------------------------------------
+# Viewer Parameters
+#--------------------------------------------------------------------------------------------
+Viewer.KeyFrameSize: 0.05
+Viewer.KeyFrameLineWidth: 1
+Viewer.GraphLineWidth: 0.9
+Viewer.PointSize: 2
+Viewer.CameraSize: 0.08
+Viewer.CameraLineWidth: 3
+Viewer.ViewpointX: 0
+Viewer.ViewpointY: -0.7
+Viewer.ViewpointZ: -1.8
+Viewer.ViewpointF: 500
+

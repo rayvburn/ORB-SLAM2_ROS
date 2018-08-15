@@ -1,0 +1,7 @@
+<launch>
+    <node pkg="orb_slam2" type="RGBD" name="orb_slam2" args="$(find orb_slam2_lib)/Vocabulary/ORBvoc.txt $(find orb_slam2)/settings/realsense_rgbd.yaml" cwd="node" output="screen">
+        <!-- remap from="/camera/rgb/image_raw" to="/camera/rgb/image_rect_color" / -->
+        <!-- remap from="/camera/depth_registered/image_raw" to="/camera/depth_registered/sw_registered/image_rect" / -->
+        <remap from="/camera/depth_registered/image_raw" to="/simple_depth_register_node/depth_registered" />
+    </node>
+</launch>
