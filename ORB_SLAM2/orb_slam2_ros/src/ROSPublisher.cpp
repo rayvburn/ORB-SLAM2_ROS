@@ -91,7 +91,7 @@ ROSPublisher::ROSPublisher(Map *map, double frequency, ros::NodeHandle nh) :
       }
     }
 
-    if ( perform_scale_correction_ && GetSystem()->GetSensorType() == ORB_SLAM2::System::eSensor::MONOCULAR ) {
+    if ( perform_scale_correction_ ) { // TODO: make available only for monocular cameras
 
       try {
 
