@@ -26,6 +26,10 @@ The installation process is quite a mess now. Try to run the **build_catkin.sh**
     catkin clean
     cd src/ORB-SLAM2
     ./build_catkin.sh
+    
+An example of use is as follows:
+
+    roslaunch orb_slam2_ros ${YOUR_CAMERA_SPECIFIC_LAUNCH_FILE}
 
 # 4. Nodes
 
