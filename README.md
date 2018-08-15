@@ -12,13 +12,20 @@ You can find a wide description of mechanisms used in ORB-SLAM2 in the following
 
 ##### Raúl Mur-Artal, J. M. M. Montiel and Juan D. Tardós. ORB-SLAM: A Versatile and Accurate Monocular SLAM System. IEEE Transactions on Robotics, vol. 31, no. 5, pp. 1147-1163, 2015
 
+The package above was tested on Ubuntu 16.04 with ROS Kinetic **only with monocular cameras**.
+
 # 2. Hardware
 
 TODO
 
 # 3. Installation, example
 
-TODO
+The installation process is quite a mess now. Try to run the **build_catkin.sh** script after cleaning whole workspace and everything should be good.
+
+    cd ${YOUR_CATKIN_WORKSPACE_LOCATION}
+    catkin clean
+    cd src/ORB-SLAM2
+    ./build_catkin.sh
 
 # 4. Nodes
 
