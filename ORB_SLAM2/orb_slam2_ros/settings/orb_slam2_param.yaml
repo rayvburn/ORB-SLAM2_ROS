@@ -1,8 +1,8 @@
 # orb_slam2_ros: # uncomment this if you will load params outside node's namespace in .launch file
   topic:
-    freq: 100                               # def 100 # frequency of SLAM system job
-    image_topic: "/raspicam_node/image/raw" # "/webcam/image_raw" #  # "/webcam/image_raw" # "/raspicam_node/image/raw"
-    orb_state_republish_rate: 10             # re-publish state @ ? Hz # def 20
+    freq: 100                               # frequency of SLAM system job
+    image_topic: "/raspicam_node/image/raw" # "/webcam/image_raw"
+    orb_state_republish_rate: 10            # re-publish state in Hz
   map_scale:
     perform_correction: true                    # possible to do with wheel encoders and robot description
     odom_topic: "/mobile_base_controller/odom"  # topic that odometry data are published on (valid if correction set true)
@@ -17,16 +17,17 @@
     camera_frame: "camera_optical"           # optical (see REP103) frame of camera
   octomap:
     enabled: true                # if set false - octomap, projected map and gradient map will not be published
-    publish_octomap: true        # octree's voxels visualization; false disables PCL too?
+    publish_octomap: true        # octree's voxels visualization
     publish_projected_map: true  # map created as an aggregating cut through a z-interval; configurable additional morphological operations
-    publish_gradient_map: false   # map created as height gradients of PCL points
+    publish_gradient_map: false  # map created as height gradients of PCL points
     rebuild: false               # clear octomap when tracking is lost and rebuild
-    rate: 0.5                      # rate of octomap cycles (integrate MapPoints and publish)
+    rate: 0.5                    # rate of octomap cycles (integrate MapPoints and publish)
     resolution: 0.20             # side of a square in meters; how many meters in real world represent px of map; 
   occupancy:
     projected_map:  
-      min_height: 0.02     # an aggregating cut through a z-interval, double, def -10, pretty good - 0.3 @ scale 1.5 | 0.15 @ scale 2.0
-      max_height: 2.50     # an aggregating cut through a z-interval - , def -10,      pretty good - 2.0 @ scale 1.5 | 1.50 @ scale 2.0
+      min_height: 0.02     # an aggregating cut through a z-interval
+      max_height: 2.50     # an aggregating cut through a z-interval
+      
       morpho_oprations:    # these are performed in the following order
         erode_se_size: 2   # default shape RECTANGLE
         erode_nb: 1        # how many 'erode' operations to perform
@@ -36,22 +37,9 @@
         close_nb: 2        # how many 'close' operations to perform
         erode2_se_size: 3  # default shape ELLIPSE
         erode2_nb: 0       # how many 'erode' operations to perform
-#       before: 2,1/2,1/3,2/2,1
+        
     height_gradient_map:
-      max_height: 2.0      # maximal voxel-z to consider in gradient-based projection, def = 0
-      nb_erosions: 1       # number of erosions performed before computing gradients, def = 1
-      low_slope:  1.285375 # default: M_PI / 4 -> 0.785375; lower bound for a slope being considered obstacle-ish;
-      high_slope: 1.485216 # default: M_PI / 3 -> 1.047167; lower bound for a slope being considered a full solid obstacle
-
-
-# NOTES
-# - increasing the scale while making octomap's resolution value smaller is not recommended - it will cause octree to grow in an instant and very slow publish rate of new projected maps
-# - the smaller the height gap for projection the faster algorithm execution
-
-# DEPRECATED
-# align_map_to_cam_frame: false    # "true" is rather only for UAV, for mobile robots "false" recommended (see rviz for difference in frame orientation)
-# adjust_map_frame: true           # set this TRUE if there will be an adjusted frame (like /odom) # FALSE -> BUGGY (must check with tf_based==FALSE!!!)
-# cam_base_translation_ is expected to be static, not active when scale correction is enabled, z > 0 means that your camera is mounted above /base_link's origin
-# tf_based: true   # if you wish to adjust some frame (like /odom) set this true, correlated with adjust_map_frame parameter
-# resolution: 0.30  ->  ++resolution - ++surface will be interpreted as occupied if 1 or more pixels are detected above that map's square
-
+      max_height: 2.0      # maximal voxel-z to consider in gradient-based projection
+      nb_erosions: 1       # number of erosions performed before computing gradients
+      low_slope:  1.285375 # lower bound for a slope being considered obstacle-ish;
+      high_slope: 1.485216 # lower bound for a slope being considered a full solid obstacle
