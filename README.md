@@ -18,7 +18,7 @@ The package above was tested on Ubuntu 16.04 with ROS Kinetic **only with monocu
 
 # 2. Hardware
 
-TODO
+To use this package, you need a camera to fill a ROS topic with image data. The package's node will attempt to reconstruct environment's geometry as a point cloud.
 
 # 3. Installation, example
 
