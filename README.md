@@ -45,7 +45,9 @@ The map can be retrieved via a ROS topic.
 
 ## 4.1.1 Subscribed topics
 
-TODO
+**image_topic (sensor_msgs/Image)** - name of the topic is set as the topic/image_topic parameter
+
+**(OPTIONAL) odometry_topic (nav_msgs/Odometry)** - name of the topic is set as the map_scale/odom_topic parameter; odometry data is used only when a scale correction for a monocular camera is performed
 
 ## 4.1.2 Published topics
 
@@ -97,6 +99,7 @@ TODO
 
 **ORB-SLAM2/orb_slam2_ros/settings/orb_slam2_param.yaml**
 
+##### Topic
 
 ~**topic/freq (float, default: )** - frequency of SLAM system job
 
@@ -105,6 +108,7 @@ TODO
 ~**topic/orb_state_republish_rate (float, default: )** - re-publish state @ Hz
 
 
+##### Map scale
 
 ~**map_scale/perform_correction (bool, default: true)** - possible to do with wheel encoders and robot description
 
@@ -119,21 +123,82 @@ TODO
 ~**map_scale/camera_height_multiplier (float, default: 1.0)** - just for better visualization (if the PCL is too low) - scale is not always perfect
 
 
+##### TF
 
-.. TODO ..
+~**frame/map_frame (string, default: "/orb_slam2/map")** - global static map
+
+~**frame/map_frame_adjusted (string, default: "/orb_slam2/odom")** - name of the interface frame between /map and /odom
+
+~**frame/base_frame (string, default: "/orb_slam2/base_link")** - robot base frame
+
+~**frame/camera_frame (string, default: "/orb_slam2/camera")** - optical (see REP103) frame of camera
+
+
+##### Octomap
+
+~**octomap/enabled (bool, default: true)** - if set false - octomap, projected map and gradient map will not be published
+
+~**octomap/publish_octomap (bool, default: false)** - octree's voxels visualization
+
+~**octomap/publish_projected_map (bool, default: true)** - map created as an aggregating cut through a z-interval; configurable additional morphological operations
+
+~**octomap/publish_gradient_map (bool, default: false)** - map created as height gradients of PCL points
+
+~**octomap/rebuild (bool, default: false)** - clear octomap when tracking is lost and rebuild
+
+~**octomap/rate (float, default: 1.0)** - rate of octomap cycles (integrate MapPoints and publish)
+
+~**octomap/resolution (float, default: 0.1)** - side of a square in meters; how many meters in real world represent px of map
+
+
+
+##### Occupancy grid - projected map
+
+~**occupancy/projected_map/min_height (double, default: -10.0)** - an aggregating cut through a z-interval
+
+~**occupancy/projected_map/max_height (double, default: +10.0)** - an aggregating cut through a z-interval
+
+
+
+
+~**occupancy/projected_map/morpho_oprations/erode_se_size (int, default: 3)** - size of the structuring element, default shape is RECTANGLE
+
+~**occupancy/projected_map/morpho_oprations/erode_nb (int, default: 1)** - how many 'erode' operations to perform
+
+~**occupancy/projected_map/morpho_oprations/open_se_size (int, default: 3)** - size of the structuring element, default shape is RECTANGLE
+
+~**occupancy/projected_map/morpho_oprations/open_nb (int, default: 1)** - how many 'open' operations to perform
+
+~**occupancy/projected_map/morpho_oprations/close_se_size (int, default: 3)** - size of the structuring element, default shape is CROSS
+
+~**occupancy/projected_map/morpho_oprations/close_nb (int, default: 1)** - how many 'close' operations to perform
+
+~**occupancy/projected_map/morpho_oprations/erode2_se_size (int, default: 3)** - size of the structuring element, default shape is ELLIPSE
+
+~**occupancy/projected_map/morpho_oprations/erode2_nb (int, default: 1)** - how many 'erode' operations to perform
+
+
+##### Occupancy grid - gradient map
+
+~**occupancy/height_gradient_map/max_height (float, default: 0.0)** - maximal voxel-z to consider in gradient-based projection
+
+~**occupancy/height_gradient_map/nb_erosions (int, default: 1)** - number of erosions performed before computing gradients
+
+~**occupancy/height_gradient_map/low_slope (float, default: M_PI / 4.0)** - lower bound for a slope being considered obstacle-ish
+
+~**occupancy/height_gradient_map/high_slope (float, default: M_PI / 3.0)** - lower bound for a slope being considered a full solid obstacle
+
 
 ## 4.1.4 Required tf Transforms
 
-interface_frame - the tf from odometry frame to camera_optical frame (check REP103 for a camera_optical frame orientation - http://www.ros.org/reps/rep-0103.html, example is in my package diff_drive_mapping_robot/tf_broadcaster)
+**interface_frame** - the tf from odometry frame to camera_optical frame (check REP103 for a camera_optical frame orientation - http://www.ros.org/reps/rep-0103.html, example is in my package diff_drive_mapping_robot/tf_broadcaster)
 
 ## 4.1.5 Provided tf Transforms
 
-map -> interface_frame (map_odom_interface_frame)
+**map -> interface_frame** (map_odom_interface_frame)
 
 ## 5. Additional info
 
-The package need exhaustive testing with other camera types. It also doesn't have the save/load map feature. Please notice that octomap parameters have huge impact on performance and morphological operations (erosion, opening, closing) have big influence how the occupancy grid map looks like. Another thing is that height of the camera often drift after some time and it is hard to set the occupancy/projected_map heights to perfectly map the real environment.
+The package need exhaustive testing with other camera types. It also doesn't have the save/load map feature. Please notice that octomap parameters have huge impact on performance (its resolution) and morphological operations (erosion, opening, closing) have big influence how the occupancy grid map looks like. Another thing is that height of the camera often drift after some time and it is hard to set the occupancy/projected_map heights to perfectly map the real environment.
 
 What's novel in this package is the map's scale correction procedure (for monocular cameras) that uses simple odometry sensors to calculate the multiplier between real and map distance.
-
-
