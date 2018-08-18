@@ -20,6 +20,8 @@ The package above was tested on Ubuntu 16.04 with ROS Kinetic **only with monocu
 
 To use this package, you need a camera to fill a ROS topic with image data. The package's node will attempt to reconstruct environment's geometry as a point cloud.
 
+There is one of image sequences I recorded while testing the algorithm's performance [zippy](https://www56.zippyshare.com/v/v7d8hun9/file.html). I suggest running it along with **diff_drive_mobile_robot/robot_offline.launch** from my another repository.
+
 # 3. Installation, example
 
 The installation process is quite a mess now. Look at the note in the **orb_slam2_lib/Vocabulary** folder. Then try to run the **build_catkin.sh** script after cleaning whole workspace and everything should be good.
