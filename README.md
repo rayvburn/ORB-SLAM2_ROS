@@ -101,6 +101,8 @@ The map can be retrieved via a ROS topic.
 
 **ORB-SLAM2/orb_slam2_ros/settings/orb_slam2_param.yaml**
 
+******************************************
+
 ##### Topic
 
 ~**topic/freq (float, default: )** - frequency of SLAM system job
@@ -109,6 +111,7 @@ The map can be retrieved via a ROS topic.
 
 ~**topic/orb_state_republish_rate (float, default: )** - re-publish state @ Hz
 
+******************************************
 
 ##### Map scale
 
@@ -124,6 +127,7 @@ The map can be retrieved via a ROS topic.
 
 ~**map_scale/camera_height_multiplier (float, default: 1.0)** - just for better visualization (if the PCL is too low) - scale is not always perfect
 
+******************************************
 
 ##### TF
 
@@ -135,6 +139,7 @@ The map can be retrieved via a ROS topic.
 
 ~**frame/camera_frame (string, default: "/orb_slam2/camera")** - optical (see REP103) frame of camera
 
+******************************************
 
 ##### Octomap
 
@@ -152,7 +157,7 @@ The map can be retrieved via a ROS topic.
 
 ~**octomap/resolution (float, default: 0.1)** - side of a square in meters; how many meters in real world represent px of map
 
-
+******************************************
 
 ##### Occupancy grid - projected map
 
@@ -179,6 +184,7 @@ The map can be retrieved via a ROS topic.
 
 ~**occupancy/projected_map/morpho_oprations/erode2_nb (int, default: 1)** - how many 'erode' operations to perform
 
+******************************************
 
 ##### Occupancy grid - gradient map
 
