@@ -20,7 +20,43 @@ The package above was tested on Ubuntu 16.04 with ROS Kinetic **only with monocu
 
 To use this package, you need a camera to fill a ROS topic with image data. The package's node will attempt to reconstruct environment's geometry as a point cloud.
 
-There is one of image sequences I recorded while testing the algorithm's performance [zippy](https://www56.zippyshare.com/v/v7d8hun9/file.html). I suggest running it along with **diff_drive_mobile_robot/robot_offline.launch** from my another repository.
+Due to the fact that I didn't use the Gazebo simulation software but a real data to test the algorithm performance this is one of the image sequences I recorded and widely used during development process: [download from mega.nz](TODO). The bag file represents data produced by the robot agent and contains such topics:
+
+    /raspicam_node/camera_info              : sensor_msgs/CameraInfo
+    
+    /raspicam_node/image/compressed         : sensor_msgs/CompressedImage          
+             
+    /raspicam_node/image/raw                : sensor_msgs/Image                    
+
+    /raspicam_node/parameter_descriptions   : dynamic_reconfigure/ConfigDescription
+
+    /raspicam_node/parameter_updates        : dynamic_reconfigure/Config           
+
+    /robot/range/ir_left                    : sensor_msgs/Range                    
+
+    /robot/range/ir_right                   : sensor_msgs/Range                    
+
+    /robot/range/sonar_front                : sensor_msgs/Range                    
+
+    /robot/range/sonar_left                 : sensor_msgs/Range                    
+
+    /robot/range/sonar_right                : sensor_msgs/Range                    
+
+    /robot/wheel_left/encoder               : std_msgs/Float64                     
+
+    /robot/wheel_left/velocity              : std_msgs/Float32                     
+
+    /robot/wheel_right/encoder              : std_msgs/Float64                     
+
+    /robot/wheel_right/velocity             : std_msgs/Float32`
+             
+
+For evaluation purposes I suggest running the `bag` along with the `ORB-SLAM2` and `differential drive robot controller` from my another repository (*diff_drive_mobile_robot*). The full system will be started after running these launches (it's an example only):
+
+    roslaunch diff_drive_mapping_robot robot_offline.launch
+    rosbag play ${PATH TO THE BAG FILE}
+    roslaunch orb_slam2_ros raspicam_mono_wide.launch
+
 
 # 3. Installation, example
 
@@ -34,7 +70,8 @@ The installation process is quite a mess now. Look at the note in the **orb_slam
 An example of use is as follows:
 
     roslaunch orb_slam2_ros ${YOUR_CAMERA_SPECIFIC_LAUNCH_FILE}
-
+    
+    
 # 4. Nodes
 
 ## 4.1 orb_slam2_ros
