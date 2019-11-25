@@ -20,7 +20,7 @@ The package above was tested on Ubuntu 16.04 with ROS Kinetic **only with monocu
 
 To use this package, you need a camera to fill a ROS topic with image data. The package's node will attempt to reconstruct environment's geometry as a point cloud.
 
-Due to the fact that I didn't use the Gazebo simulation software but a real data to test the algorithm performance this is one of the image sequences I recorded and widely used during development process: [download from mega.nz](TODO). The bag file represents data produced by the robot agent and contains such topics:
+Due to the fact that I didn't use the Gazebo simulation software but a real data to test the algorithm performance this is one of the image sequences I recorded and widely used during development process: [download from mega.nz](https://mega.nz/#F!PHQk3CZZ!1fXxAh1eKfbqlbtVTJECig). The bag file represents data produced by the robot agent and contains such topics:
 
     /raspicam_node/camera_info              : sensor_msgs/CameraInfo
     
