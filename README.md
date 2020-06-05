@@ -60,14 +60,34 @@ For evaluation purposes I suggest running the `bag` along with the `ORB-SLAM2` a
 
 # 3. Installation, example
 
-The installation process is quite a mess now. Look at the note in the **orb_slam2_lib/Vocabulary** folder. Then try to run the **build_catkin.sh** script after cleaning whole workspace and everything should be good.
+The installation process is quite a mess now. Look at the note in the **orb_slam2_lib/Vocabulary** folder. **Then** try to follow the instructions below and everything should be good.
 
-    cd ${YOUR_CATKIN_WORKSPACE_LOCATION}
+Firstly, clean the existing `catkin` workspace if you plan to install `ORB-SLAM2_ROS` along with other packages.
+
     catkin clean
-    cd src/ORB-SLAM2
+
+The installation process, in steps, is as follows:
+
+    mkdir ${YOUR_**NEW**_CATKIN_WORKSPACE_LOCATION}
+    cd ${YOUR_**NEW**_CATKIN_WORKSPACE_LOCATION}
+    mkdir src
+    cd src
+    git clone https://github.com/rayvburn/ORB-SLAM2_ROS
+
+Next, clone the `octomap_ros` repository into the workspace:
+
+    git clone --single-branch --branch $ROS_DISTRO-devel git@github.com:OctoMap/octomap_ros.git
+
+Create execution privileges for all installation scripts:
+
+    cd ORB-SLAM2_ROS/ORB_SLAM2
+    sudo chmod +x build*
+
+Then run the main build script:
+
     ./build_catkin.sh
-    
-An example of use is as follows:
+
+After successful installation, run an example:
 
     roslaunch orb_slam2_ros ${YOUR_CAMERA_SPECIFIC_LAUNCH_FILE}
     

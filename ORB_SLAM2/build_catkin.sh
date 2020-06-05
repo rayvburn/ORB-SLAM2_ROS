@@ -21,35 +21,36 @@ echo -e "Installation will start in ${CYN}1${NC}"
 sleep 1
 echo " "
 
-echo -e "Trying to install ${GRN}Eigen3${NC}. You need to write password in order to to that..."
+echo -e "Trying to install ${GRN}Eigen3${NC} and ${GRN}octomap${NC} packages. You need to write password in order to do that..."
 sleep 1
 sudo apt install libeigen3-dev
+sudo apt install ros-$ROS_DISTRO-octomap
 
 echo " "
 echo "Unpacking the vocabulary file..."
 sleep 1
-cd ~/catkin_ws/src/ORB_SLAM2/orb_slam2_lib/Vocabulary/
+cd orb_slam2_lib/Vocabulary/
 tar xf ORBvoc.txt.tar.gz
 echo "Done"
 echo " "
 sleep 1
-cd ~/catkin_ws
+cd ../../../../.. # back to the workspace main folder
 catkin build orb_slam2_lib
-cd ~/catkin_ws
 source devel/setup.bash
 
 echo " "
 echo -e "${CYN}Trying to copy compiled lib to system directory...${NC}"
 sleep 2
-sudo cp ~/catkin_ws/devel/lib/liborb_slam2_lib.so /usr/local/lib
+cd devel/lib
+sudo cp liborb_slam2_lib.so /usr/local/lib
+cd ../.. # back to the workspace main folder
 
-cd ~/catkin_ws/src/ORB_SLAM2
+cd src/ORB-SLAM2_ROS/ORB_SLAM2
 ./build.sh
-cd ~/catkin_ws/src/ORB_SLAM2
 ./build_ros.sh
 
 sleep 1
-cd ~/catkin_ws
+cd ../../.. # back to the workspace main folder
 source devel/setup.bash
 catkin build
 source devel/setup.bash
@@ -61,7 +62,7 @@ sleep 2
 echo " "
 echo -e "${CYN}Converting vocabulary to binary...${NC}"
 sleep 1
-cd ~/catkin_ws/src/ORB_SLAM2/orb_slam2_lib
+cd src/ORB-SLAM2_ROS/ORB_SLAM2/orb_slam2_lib
 ./bin_vocabulary
 sleep 1
 
@@ -73,6 +74,3 @@ echo -e "If an error ${RED}fatal error: orb_slam2_ros/ORBState.h: No such file o
 echo " "
 echo -e "In case of an error saying ${RED}catkin_ws/devel/lib/orb_slam2_ros/Mono: symbol lookup error: ~/catkin_ws/devel/lib/orb_slam2_ros/Mono: undefined symbol: _ZN9ORB_SLAM211FrameDrawerC1EPNS_3MapE${NC} cleaning workspace (${GRN}catkin clean${NC}) and running this script once again will probably help. This most likely happened due to changes in files in ${GRN}orb_slam2_lib${NC} package."
 echo " "
-cd ~/catkin_ws
-
-
