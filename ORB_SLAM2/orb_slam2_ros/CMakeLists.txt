@@ -40,6 +40,7 @@ catkin_package(CATKIN_DEPENDS message_runtime std_msgs)
 
 include_directories(
   ${roscpp_INCLUDE_DIRS}
+  ${octomap_ros_INCLUDE_DIRS}
   ${EIGEN3_INCLUDE_DIR}
   ${PROJECT_SOURCE_DIR}
   ${PROJECT_SOURCE_DIR}/../orb_slam2_lib
@@ -66,6 +67,7 @@ set(LIBS
   ${roscpp_LIBRARIES}
   ${OpenCV_LIBS}
   ${catkin_LIBRARIES}
+  ${octomap_ros_LIBRARIES}
   orb_slam2_lib
   PublisherUtils
   ScaleCorrector
