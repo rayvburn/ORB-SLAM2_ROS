@@ -35,6 +35,7 @@ echo "Done"
 echo " "
 sleep 1
 cd ../../../../.. # back to the workspace main folder
+catkin build octomap_ros
 catkin build orb_slam2_lib
 source devel/setup.bash
 
@@ -70,7 +71,8 @@ echo " "
 echo " "
 echo -e " ${GRN}--------------- HINTS ---------------${NC} "
 echo " "
-echo -e "If an error ${RED}fatal error: orb_slam2_ros/ORBState.h: No such file or directory${NC} still exists, please build catkin workspace manually by typing ${GRN}catkin build${NC} in main catkin_ws folder or run the script once again"
+echo -e "If an error ${RED}fatal error: orb_slam2_ros/ORBState.h: No such file or directory${NC} exists, please build catkin workspace manually by typing ${GRN}catkin build${NC} in main catkin_ws folder or run the script once again"
 echo " "
-echo -e "In case of an error saying ${RED}catkin_ws/devel/lib/orb_slam2_ros/Mono: symbol lookup error: ~/catkin_ws/devel/lib/orb_slam2_ros/Mono: undefined symbol: _ZN9ORB_SLAM211FrameDrawerC1EPNS_3MapE${NC} cleaning workspace (${GRN}catkin clean${NC}) and running this script once again will probably help. This most likely happened due to changes in files in ${GRN}orb_slam2_lib${NC} package."
+echo -e "In case of an error saying, like, ${RED}catkin_ws/devel/lib/orb_slam2_ros/Mono: symbol lookup error: ~/catkin_ws/devel/lib/orb_slam2_ros/Mono: undefined symbol: _ZN9ORB_SLAM211FrameDrawerC1EPNS_3MapE${NC} cleaning workspace (${GRN}catkin clean${NC}) and running this script once again will probably help. This most likely happened due to changes in files in ${GRN}orb_slam2_lib${NC} package."
 echo " "
+echo -e "If the build process ended without any errors, you're ready to go!"

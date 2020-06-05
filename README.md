@@ -60,17 +60,21 @@ For evaluation purposes I suggest running the `bag` along with the `ORB-SLAM2` a
 
 # 3. Installation, example
 
-The installation process is quite a mess now. Look at the note in the **orb_slam2_lib/Vocabulary** folder. **Then** try to follow the instructions below and everything should be good.
+The installation process is quite a mess now. To start with, look at the note placed in the **ORB_SLAM2/orb_slam2_lib/Vocabulary** folder. **Then** try to follow the instructions below and everything should be good. Note that the installation script was tested under `Ubuntu 16.04` with `ROS Kinetic` and works fine.
 
 Firstly, clean the existing `catkin` workspace if you plan to install `ORB-SLAM2_ROS` along with other packages.
 
     catkin clean
 
-The installation process, in steps, is as follows:
+The installation process, in steps, is as follows (in case of an existing workspace, move on to the next block):
 
     mkdir ${YOUR_**NEW**_CATKIN_WORKSPACE_LOCATION}
     cd ${YOUR_**NEW**_CATKIN_WORKSPACE_LOCATION}
+    catkin init
     mkdir src
+
+Being in the main folder of your `catkin` workspace:
+
     cd src
     git clone https://github.com/rayvburn/ORB-SLAM2_ROS
 
