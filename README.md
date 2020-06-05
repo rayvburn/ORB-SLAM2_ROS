@@ -60,7 +60,7 @@ For evaluation purposes I suggest running the `bag` along with the `ORB-SLAM2` a
 
 # 3. Installation, example
 
-The installation process is quite a mess now. To start with, look at the note placed in the **ORB_SLAM2/orb_slam2_lib/Vocabulary** folder. **Then** try to follow the instructions below and everything should be good. Note that the installation script was tested under `Ubuntu 16.04` with `ROS Kinetic` and works fine.
+The installation process is quite a mess now. To start with, look at the note placed in the **ORB_SLAM2/orb_slam2_lib/Vocabulary** folder. **Then** try to follow the instructions below and everything should be good. Note that the installation script was tested under `Ubuntu 16.04` with `ROS Kinetic` and works fine. I also have 3.4.5 version of `openCV` installed ( the installation script is placed in `Wiki`, but may needs modifications - i.e. not tested lately).
 
 Firstly, clean the existing `catkin` workspace if you plan to install `ORB-SLAM2_ROS` along with other packages.
 
