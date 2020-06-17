@@ -26,7 +26,6 @@ find_package(catkin REQUIRED COMPONENTS
 
 # Generate messages in the 'msg' folder
 add_message_files(
-  DIRECTORY msg
   FILES
   ORBState.msg
 )
@@ -36,9 +35,15 @@ generate_messages(
   std_msgs
 )
 
-catkin_package(CATKIN_DEPENDS message_runtime std_msgs)
+catkin_package(
+  INCLUDE_DIRS include
+  #LIBRARIES 
+  CATKIN_DEPENDS message_runtime std_msgs
+  #DEPENDS 
+)
 
 include_directories(
+  ${catkin_INCLUDE_DIRS}
   ${roscpp_INCLUDE_DIRS}
   ${octomap_ros_INCLUDE_DIRS}
   ${EIGEN3_INCLUDE_DIR}
@@ -80,7 +85,7 @@ add_executable(Mono
   src/ROSPublisher.cpp
 )
 
-add_dependencies(Mono ${${PROJECT_NAME}_EXPORTED_TARGETS})
+add_dependencies(Mono ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 target_link_libraries(Mono
   ${LIBS}
@@ -103,7 +108,7 @@ add_executable(Stereo
   src/ROSPublisher.cpp
 )
 
-add_dependencies(Stereo ${${PROJECT_NAME}_EXPORTED_TARGETS})
+add_dependencies(Stereo ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 target_link_libraries(Stereo
   ${LIBS}
@@ -115,7 +120,7 @@ add_executable(RGBD
   src/ROSPublisher.cpp
 )
 
-add_dependencies(Stereo ${${PROJECT_NAME}_EXPORTED_TARGETS})
+add_dependencies(Stereo ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 target_link_libraries(RGBD
   ${LIBS}
