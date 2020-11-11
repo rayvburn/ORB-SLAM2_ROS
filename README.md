@@ -1,12 +1,12 @@
 # ORB-SLAM2_ROS
 
-This package contains a ROS wrapper for ORB-SLAM2 (https://github.com/raulmur/ORB_SLAM2). 
+This package contains a ROS wrapper for [ORB-SLAM2](https://github.com/raulmur/ORB_SLAM2). 
 
 ORB-SLAM2 provides a VSLAM (Visual Simultaneous Localization and Mapping) as a ROS node. Using ORB-SLAM2, you can create a 3-D feature-based sparse map, 2-D occupancy grid map (like a building floorplan) from camera data collected by a mobile robot.
 
-Original package already added some features to the ORB-SLAM2 (https://gitlab.tubit.tu-berlin.de/breakdowncookie/ORB_SLAM2). It's authors are: Jan Brehmer, Christopher-Eyk Hrabia, Sebastiano Barrera. I modified it in matters of my MSc thesis.
+[Original package](https://gitlab.tubit.tu-berlin.de/breakdowncookie/ORB_SLAM2) already added some features to the ORB-SLAM2. It's authors are: Jan Brehmer, Christopher-Eyk Hrabia, Sebastiano Barrera. I modified it in matters of my MSc thesis.
 
-Binary version of vocabulary file was proposed by poine (https://github.com/poine/ORB_SLAM2).
+Binary version of vocabulary file was proposed by [`poine`](https://github.com/poine/ORB_SLAM2).
 
 # 1. Documentation
 
@@ -60,7 +60,7 @@ For evaluation purposes I suggest running the `bag` along with the `ORB-SLAM2` a
 
 # 3. Installation, example
 
-The installation process is quite a mess now. To start with, look at the note placed in the **ORB_SLAM2/orb_slam2_lib/Vocabulary** folder. **Then** try to follow the instructions below and everything should be good. Note that the installation script was tested under `Ubuntu 16.04` with `ROS Kinetic` and works fine. I also have 3.4.5 version of `openCV` installed ( the installation script is placed in `Wiki`, but may needs modifications - i.e. not tested lately).
+The installation process is quite a mess now. Although, try to follow the instructions below and everything should be good. Note that the installation script was tested under `Ubuntu 16.04` with `ROS Kinetic` and works fine. I also have 3.4.5 version of `openCV` installed (the installation script is placed in `Wiki`, but may needs modifications - i.e. not tested lately).
 
 Firstly, clean the existing `catkin` workspace if you plan to install `ORB-SLAM2_ROS` along with other packages.
 
@@ -78,7 +78,7 @@ Being in the main folder of your `catkin` workspace:
     cd src
     git clone https://github.com/rayvburn/ORB-SLAM2_ROS
 
-Next, clone the `octomap_ros` repository into the workspace:
+Next, clone the `octomap_ros` repository into the workspace (if you haven't installed it via `apt` previously):
 
     git clone --single-branch --branch $ROS_DISTRO-devel git@github.com:OctoMap/octomap_ros.git
 

@@ -26,6 +26,8 @@ sleep 1
 sudo apt install libeigen3-dev
 sudo apt install ros-$ROS_DISTRO-octomap
 
+echo "Downloading the vocabulary file..."
+wget -O orb_slam2_lib/Vocabulary/ORBvoc.txt.tar.gz https://github.com/raulmur/ORB_SLAM2/raw/master/Vocabulary/ORBvoc.txt.tar.gz
 echo " "
 echo "Unpacking the vocabulary file..."
 sleep 1
