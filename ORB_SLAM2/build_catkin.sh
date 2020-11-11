@@ -9,17 +9,6 @@ echo " "
 echo -e "Let this script be the ${CYN}first execution after cleaning workspace${NC} by ${GRN}'catkin clean'${NC} command"
 echo -e "${RED}Be careful!${NC} It will rebuild all packages from workspace"
 echo " "
-echo -e "Installation will start in ${CYN}5${NC}"
-sleep 1
-echo -e "Installation will start in ${CYN}4${NC}"
-sleep 1
-echo -e "Installation will start in ${CYN}3${NC}"
-sleep 1
-echo -e "Installation will start in ${CYN}2${NC}"
-sleep 1
-echo -e "Installation will start in ${CYN}1${NC}"
-sleep 1
-echo " "
 
 echo -e "Trying to install ${GRN}Eigen3${NC} and ${GRN}octomap${NC} packages. You need to write password in order to do that..."
 sleep 1
@@ -37,8 +26,8 @@ echo "Done"
 echo " "
 sleep 1
 cd ../../../../.. # back to the workspace main folder
-catkin build octomap_ros
-catkin build orb_slam2_lib
+#catkin build octomap_ros
+catkin build -j2 orb_slam2_lib
 source devel/setup.bash
 
 echo " "
@@ -50,15 +39,15 @@ cd ../.. # back to the workspace main folder
 
 cd src/ORB-SLAM2_ROS/ORB_SLAM2
 ./build.sh
-./build_ros.sh
+#./build_ros.sh
 
 sleep 1
 cd ../../.. # back to the workspace main folder
 source devel/setup.bash
-catkin build
+catkin build -j2
 source devel/setup.bash
 sleep 3
-catkin build orb_slam2_ros orb_slam2_lib
+catkin build -j2 orb_slam2_ros orb_slam2_lib
 source devel/setup.bash
 sleep 2
 
