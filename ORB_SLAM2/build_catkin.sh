@@ -24,7 +24,7 @@ echo "Done"
 echo " "
 sleep 1
 cd ../../../../.. # back to the workspace main folder
-#catkin build octomap_ros
+
 catkin build -j2 orb_slam2_lib
 source devel/setup.bash
 
@@ -37,7 +37,6 @@ cd ../.. # back to the workspace main folder
 
 cd src/ORB-SLAM2_ROS/ORB_SLAM2
 ./build.sh
-#./build_ros.sh
 
 sleep 1
 cd ../../.. # back to the workspace main folder
